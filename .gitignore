@@ -1,3 +1,9 @@
+*
+!.gitignore
+!.ipynb
+!.html
+!titanic_survival_exploration
+
 # Mac OS
 .DS_Store
 
