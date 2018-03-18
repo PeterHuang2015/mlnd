@@ -12226,8 +12226,9 @@ Yes, as of 92.3 percent of the variance in Y is predictable from X which is a sa
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>
-In this way, we could be aware when overfitting or underfitting happens which means we need to fix the issue. Score on test set is low while on train set is okay implies overfitting, both is unsatisfying means we may be suffering from underfitting problem. Splitting the dataset for training and testing is an efficient way of testing generality of the model which is necessary for its usability.</p>
+<p><strong>Answer: </strong></p>
+<p>Splitting the dataset aims to manually create unseen data reserved for model validation. As good model should be prepared for unseen, real-world input, its better to test it out on examples unreachable for training in advance. Only models with good generality could be useful.</p>
+<p>BTW, in this way, we could be aware when overfitting or underfitting happens which means we need to fix the issue. Score on test set is low while on train set is okay implies overfitting, both is unsatisfying means we may be suffering from underfitting problem. Splitting the dataset for training and testing is an efficient way of testing generality of the model which is necessary for its usability.</p>
 
 </div>
 </div>
@@ -13827,7 +13828,7 @@ gg==
 <p><strong>Answer: </strong></p>
 <ul>
 <li>High bias when maximum depth=1, as the plot shows score on training set and validating set could be further improved when depth grows.</li>
-<li>High variance, as the performance on validation set has been falling down since depth=4, only training score increases since then.</li>
+<li>High variance when maximum depth=10, as the performance on validation set has been falling down since depth=4, only training score increases since then, which implies overfitting.</li>
 </ul>
 
 </div>
@@ -13924,8 +13925,10 @@ gg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ul>
-<li>The training test could be splitted to k parts, selecting each part as validation set iteratively for evaluating algorithm performance and use other parts for training is known as k-fold cross-validation.</li>
-<li>This technique helps ensure the params selected by gridsearch is more believable as good param setting is robust when validation and training set varies, in details, the score for choosing the best parameter setting is averaged score on k-folds, leveraging the effect of randomness when splitting training and testing set.</li>
+<li><p>The training test could be randomly splitted to k parts(equal size, sometimes, the last folder may be smaller), selecting each part as validation set iteratively for evaluating algorithm performance and use other parts for training is known as k-fold cross-validation(in other words, loop over k folds, take current one as validation set and other parts as training set), the final reported score is the averaged score on all folds.</p>
+</li>
+<li><p>This technique helps ensure the params selected by gridsearch is more believable as good param setting is robust when validation and training set varies, in details, the score for choosing the best parameter setting is <strong>averaged</strong> score on k-folds. <del>leveraging the effect of randomness when splitting training and testing set.</del></p>
+</li>
 </ul>
 
 </div>
@@ -14254,9 +14257,11 @@ Range in prices: $41,854.17
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>
-The constructed model is insufficient for real-world setting as house prices changed a lot from 1978 to now.
-The features are too coarse to evaluate the actual property value, at least square feet should be added. The model is not robust enough for making consistent predictions.Prices in different blocks varies a lot and the price is dynamic in some range rather than being the fixed price for selling the house. Neightborhood characteristics could not fully express the individual house state.</p>
+<p><strong>Answer: </strong></p>
+<p>The constructed model is insufficient for real-world setting as house prices changed a lot due to inflation from 1978 to now. I would like to buy a house in 40 years ago's price :), but no sellers would like such a deal.</p>
+<p>The features are too coarse to evaluate the actual property value, at least square feet should be added. Otherwise just adding more rooms in same space would increase the property value.</p>
+<p>The model is not robust enough for making consistent predictions.Prices in different cities varies a lot and the price is dynamic in some range rather than being the fixed price for selling the house.</p>
+<p>Entire neightborhood characteristics could not fully express the individual house state, as there are always some outliers, one luxury house may have much higher price in the same block.</p>
 
 </div>
 </div>
